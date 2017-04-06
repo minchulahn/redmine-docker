@@ -24,8 +24,7 @@ ADD assets/config/ /app/setup/config/
 ADD assets/init /app/init
 RUN chmod 755 /app/init
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 80 443 3306
 
 ENV REDMINE_RELATIVE_URL_ROOT /redmine
 
@@ -35,7 +34,7 @@ ENV REDMINE_RELATIVE_URL_ROOT /redmine
 
 VOLUME ["/root/redmine/data"]
 VOLUME ["/var/log/redmine"]
-VOLUME ["/var/lib/mysql"]
+VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
 ENTRYPOINT ["/app/init"]
 CMD ["app:start"]
